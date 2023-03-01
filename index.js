@@ -12,8 +12,10 @@ import presetEnv from "postcss-preset-env";
 import { breakpoints as customMedia } from "@fabric-ds/css/colors.js";
 import tailwindConfig from "@fabric-ds/css/tailwind-config";
 
+const CWD = process.cwd();
+
 async function buildCSS() {
-  const from = "./styles.css";
+  const from = new URL("./styles.css", import.meta.url).pathname;
   const css = fs.readFileSync(from, "utf-8");
   const plugins = [
     atImport,
@@ -24,12 +26,12 @@ async function buildCSS() {
         // set this to point at your source files. These will be scanned for Tailwind class usage.
         // The CSS for any classes found will be included in the build
         content: [
-          "./content.ts",
-          "./content.js",
-          "./fallback.ts",
-          "./fallback.js",
-          "./client/**/*.ts",
-          "./client/**/*.js",
+          `${CWD}/content.js`,
+          `${CWD}/content.ts`,
+          `${CWD}/fallback.js`,
+          `${CWD}/fallback.ts`,
+          `${CWD}/src/**/*.js`,
+          `${CWD}/src/**/*.ts`,
         ],
         // You can add classes that should never be purged here. Probably won't need to do this though.
         safelist: [],
@@ -57,9 +59,7 @@ export default () => ({
   name: "esbuild-fabric-css",
   setup(build) {
     build.onLoad({ filter: /(content|fallback)\.(ts|js)$/ }, async (args) => {
-        console.log(args.path)
       const { ext } = parse(args.path);
-      console.log(ext)
       const input = await readFile(args.path, "utf8");
       if (!input.includes('@fabric-css')) {
         // if theres no @fabric-css placeholder, theres no point in continuing
