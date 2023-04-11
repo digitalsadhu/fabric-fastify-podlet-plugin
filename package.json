@@ -1,6 +1,6 @@
 {
-  "name": "fabric-fastify-podlet-plugin",
-  "version": "1.0.1",
+  "name": "fabric-esbuild-plugin",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",

@@ -7,19 +7,19 @@ This hooks into Esbuild and replaces @fabric-css placeholders in content or fall
 
 Install
 ```
-npm install fabric-fastify-podlet-plugin
+npm install fabric-esbuild-plugin
 ```
 
 Import
 ```js
 // build.js
-import fabricPlugin from 'fabric-fastify-podlet-plugin'
+import fabricPlugin from 'fabric-esbuild-plugin'
 ```
 
 Register
 ```js
 // build.js
-import fabricPlugin from 'fabric-fastify-podlet-plugin';
+import fabricPlugin from 'fabric-esbuild-plugin';
 export default () => [fabricPlugin()];
 ```
 

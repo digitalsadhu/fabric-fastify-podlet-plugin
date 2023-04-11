@@ -53,7 +53,6 @@ async function buildCSS() {
   // and then maps prefixes correctly.
   return result.css.replaceAll("\\", "\\\\").replaceAll("--tw-", "--f-");
 }
-console.log('loading plugin')
 // Exporting this function will get picked up by Podium and plugged into the build
 export default () => ({
   name: "esbuild-fabric-css",
